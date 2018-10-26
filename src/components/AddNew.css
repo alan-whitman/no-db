@@ -1,0 +1,39 @@
+body    {
+}
+.add-new    {
+    position: fixed;
+    top: calc(100% / 2 - 300px);
+    left: calc(100% / 2 - 200px);
+    height: 250px;
+    width: 400px;
+    border: 2px solid lightgray;
+    z-index: 15;    
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.add-new input{
+    width: 150px;
+    height: 40px;
+    border: 2px solid lightgray;
+    font-size: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.add-new div    {
+    text-align: center;
+    margin-top: 30px;
+}
+.add-new button {
+    width: 100px;
+    height: 30px;
+    background-color: white;;
+    border: 2px solid lightgrey;
+    font-size: 16px;
+}
+.add-new button:hover {
+    background-color: lightgrey;
+    cursor: pointer;
+}

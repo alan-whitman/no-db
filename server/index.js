@@ -10,7 +10,9 @@ app.get('/api/votes', vc.getVotes);
 
 app.post('/api/votes', vc.createVote);
 
-app.put('api/votes/:id', vc.updateVote);
+app.put('/api/votes/:id', vc.updateVote);
+
+app.put('/api/votes/update_tally/:id/:which', vc.increaseTally);
 
 app.delete('/api/votes/:id', vc.deleteVote);
 
