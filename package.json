@@ -24,5 +24,20 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "It's a thing.",
+  "main": "server/index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alan-whitman/no-db.git"
+  },
+  "keywords": [],
+  "author": "Alan Whitman",
+  "license": "ISC",
+  "proxy": "http://localhost:3500",
+  "bugs": {
+    "url": "https://github.com/alan-whitman/no-db/issues"
+  },
+  "homepage": "https://github.com/alan-whitman/no-db#readme"
 }

@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
+import VoteCard from './components/voteCard';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      votes: []
+    }
+    this.getVotes = this.getVotes.bind(this);
+  }
+  componentDidMount()  {
+    axios.get('/api/votes').then((res) =>  {
+      this.setState({votes: res.data.data})
+    }).catch(err => console.error(err));
+
+  }
+  getVotes()  {
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {this.state.votes.map((vote, i) => {
+          return <VoteCard first={vote.first} second={vote.second} submitter={vote.submitter} key={i} />
+        })}
       </div>
     );
   }
