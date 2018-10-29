@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RenderExternal from './RenderExternal';
 import './External.css';
 import axios from 'axios';
+import marvelApiKey from '../nogit/marvel';
 
 class External extends Component    {
     constructor()   {
@@ -42,6 +43,12 @@ class External extends Component    {
             this.setState({dataset: names});
         }).catch(err => console.error(err));
     }
+    getMarvelChars()    {
+        let url = 'http://gateway.marvel.com/v1/public/characters?apikey=' + marvelApiKey; 
+        axios.get(url).then((res) =>    {
+            console.log(res);
+        }).catch(err => console.error(err));
+    }
     toggleShowExternal(which) {
         switch(which)   {
             case 'p1':
@@ -50,8 +57,11 @@ class External extends Component    {
             case 'p2':
                 this.getPokemonGen2();
                 break;
-            case 'swp':
+            case 'swc':
                 this.getStarWarsChars();
+                break;
+            case 'mvc':
+                this.getMarvelChars();
                 break;
             default:
                 return;
@@ -67,8 +77,11 @@ class External extends Component    {
                 <div className="external-choice" onClick={e => this.toggleShowExternal('p2')}>
                     Pokemon (2nd Gen)
                 </div>
-                <div className="external-choice" onClick={e => this.toggleShowExternal('swp')}>
+                <div className="external-choice" onClick={e => this.toggleShowExternal('swc')}>
                     Star Wars Characters
+                </div>
+                <div className="external-choice" onClick={e => this.toggleShowExternal('mvc')}>
+                    Marvel Characters
                 </div>
             </div>
         )
