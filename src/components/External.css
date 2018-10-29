@@ -1,0 +1,11 @@
+.external   {
+    border: 1px solid darkgray;
+    height: 600px;
+    width: 800px;
+    z-index: 100;
+    position: fixed;
+    top: calc(100% / 2 - 400px);
+    left: calc(100% / 2 - 400px);
+    overflow: scroll;
+    background-color: white;
+}

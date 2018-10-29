@@ -25,7 +25,6 @@ module.exports = {
     createVote(req, res)    {
         let { first, second, submitter } = req.body;
         let newVote = {first, second, submitter, id, firstTally: 0, secondTally: 0 };
-        // error checking
         for (let term in newVote)   {
             if (term.trim().length === 0)   {
                 res.status(400).send(votes);
@@ -38,9 +37,8 @@ module.exports = {
     },
     updateVote(req, res)    {
         let { first, second, submitter } = req.body;
-        let updateId = parsteInt(req.params.id);
+        let updateId = parseInt(req.params.id);
         let updatedVote = {first, second, submitter};
-        // console.log(updatedVote);
         votes.forEach((vote, i)   =>  {
             if (vote.id === updateId)   {
                 votes[i].first = updatedVote.first || votes[i].first;
@@ -65,7 +63,6 @@ module.exports = {
         let foundIt = false;
         let updateId = parseInt(req.params.id);
         let which = req.params.which === "first" ? "firstTally" : req.params.which === "second" ? "secondTally" : false;
-        console.log(typeof which, which)
         if (!which) {
             res.status(400).send(votes);
             return;
