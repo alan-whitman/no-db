@@ -92,11 +92,14 @@ class App extends Component {
     return (
       <div className="App" ref="appRef">
         <header>
-          <div className="search-votes"><input value={this.state.searchStr} onChange={e => this.updateInput(e.target.value, 4)} /> <button onClick={this.doSearch}>Search</button></div>
-          <div className="refresh" onClick={this.getVotes}>
+          <input value={this.state.searchStr} onChange={e => this.updateInput(e.target.value, 4)} /> 
+          <div class="header-element" onClick={this.doSearch}>
+            Search
+          </div>
+          <div  class="header-element" onClick={this.getVotes}>
             Refresh
           </div>
-          <div className="add-new-button" onClick={this.showNewToggle}>
+          <div  class="header-element" onClick={this.showNewToggle}>
             New Vote
           </div>
         </header>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import RenderExternal from './RenderExternal';
 import './External.css';
 import axios from 'axios';
-import marvelApiKey from '../nogit/marvel';
 
 class External extends Component    {
     constructor()   {
@@ -14,6 +13,7 @@ class External extends Component    {
         this.getPokemonGen1 = this.getPokemonGen1.bind(this);
         this.getPokemonGen2 = this.getPokemonGen2.bind(this);
         this.getStarWarsChars = this.getStarWarsChars.bind(this);
+        this.getGhibilFilms = this.getGhibilFilms.bind(this);
         this.toggleShowExternal = this.toggleShowExternal.bind(this);
     }
     getPokemonGen1()    {
@@ -43,10 +43,13 @@ class External extends Component    {
             this.setState({dataset: names});
         }).catch(err => console.error(err));
     }
-    getMarvelChars()    {
-        let url = 'http://gateway.marvel.com/v1/public/characters?apikey=' + marvelApiKey; 
-        axios.get(url).then((res) =>    {
-            console.log(res);
+    getGhibilFilms()    {
+        axios.get('https://ghibliapi.herokuapp.com/films').then(res =>  {
+            let names = [];
+            for (let i = 0; i < res.data.length; i++)   {
+                names.push(res.data[i].title)
+            }
+            this.setState({dataset: names});
         }).catch(err => console.error(err));
     }
     toggleShowExternal(which) {
@@ -60,8 +63,8 @@ class External extends Component    {
             case 'swc':
                 this.getStarWarsChars();
                 break;
-            case 'mvc':
-                this.getMarvelChars();
+            case 'gh':
+                this.getGhibilFilms();
                 break;
             default:
                 return;
@@ -80,8 +83,8 @@ class External extends Component    {
                 <div className="external-choice" onClick={e => this.toggleShowExternal('swc')}>
                     Star Wars Characters
                 </div>
-                <div className="external-choice" onClick={e => this.toggleShowExternal('mvc')}>
-                    Marvel Characters
+                <div className="external-choice" onClick={e => this.toggleShowExternal('gh')}>
+                    Ghibli Films
                 </div>
             </div>
         )

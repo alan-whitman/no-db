@@ -6,6 +6,7 @@
     padding: 10px;
     margin: 10px;
     position: relative;
+    background-color: #C3C3C3;
 }
 .first-contender {
     width: 50%;
@@ -92,14 +93,14 @@
 .first-graph    {
     width: 40px;
     position: absolute;
-    background-color: darkgray;
+    background-color: #6F2626;
     bottom: 30px;
     left: 48px;
 }
 .second-graph   {
     width: 40px;
     position: absolute;
-    background-color: darkgray;
+    background-color: #6F2626;
     bottom: 30px;
     left: 48px;
 }
