@@ -6,7 +6,7 @@ body    {
     left: calc(100% / 2 - 200px);
     height: 250px;
     width: 400px;
-    border: 2px solid lightgray;
+    border: 2px solid darkgray;
     z-index: 15;    
     background-color: rgba(255, 255, 255, 1);
     color: rgba(0, 0, 0, 1);
@@ -18,12 +18,12 @@ body    {
 .add-new input{
     width: 150px;
     height: 40px;
-    border: 2px solid lightgray;
+    border: 2px solid darkgray;
     font-size: 24px;
     margin-left: 10px;
     margin-right: 10px;
 }
-.add-new div    {
+.add-new>div    {
     text-align: center;
     margin-top: 10px;
 }
@@ -31,26 +31,27 @@ body    {
     width: 100px;
     height: 30px;
     background-color: lightgrey;
-    border: 2px solid lightgrey;
+    border: 1px solid darkgray;
     font-size: 16px;
 }
 .add-new button:hover {
     background-color: darkgrey;
     cursor: pointer;
 }
-.close-button   {
+.close-button-addnew   {
     position: absolute;
     height: 20px;
     width: 20px;
-    border: 1px solid lightgrey;
+    border: 1px solid darkgray;
+    background-color: lightgray;
     text-align: center;
     padding-top: 2px;
     right: 1px;
     top: -9px;
     z-index: 50;
 }
-.close-button:hover {
-    background-color: lightgrey;
+.close-button-addnew:hover {
+    background-color: darkgray;
     cursor: pointer;   
 }
 .select-external    {
@@ -68,8 +69,4 @@ body    {
 .select-external:hover  {
     background-color: darkgray;
     cursor: pointer;
-}
-.margin-top-fix  {
-    /* border: 1px solid black; */
-    /* margin-top: 1000px; */
 }

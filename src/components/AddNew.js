@@ -4,35 +4,38 @@ import External from './External';
 
 
 class AddNew extends Component  {
-    constructor()   {
-        super();
+    constructor(props)   {
+        super(props);
         this.state = {
             showPokemon: false,
-            showExternalSelectFirst: false,
-            showExternalSelectSecond: false
+            showExternalSelect: false,
+            whichExternalSelect: 0
 
         }
         this.toggleExternalSelect = this.toggleExternalSelect.bind(this);
+        this.addExternal = this.addExternal.bind(this);
     }
     toggleExternalSelect(which)  {
-        console.log('derp');
-        this.setState({'showExternalSelectFirst': true})
-        console.log(this.state.showExternalSelectFirst);
+        this.setState({showExternalSelect: !this.state.showExternalSelect, whichExternalSelect: which})
+    }
+    addExternal(val, which)   {
+        this.props.updateInput(val, which);
+        this.toggleExternalSelect(which);
     }
     render()    {
         return(
             <div className="add-new">
-                {this.state.showExternalSelectFirst ? <External /> : false}
-                <div className="close-button" onClick={this.props.showNewToggle}>X</div>
+                {this.state.showExternalSelect ? <External addExternal={this.addExternal} which={this.state.whichExternalSelect} toggleExternalSelect={this.toggleExternalSelect} /> : false}
+                <div className="close-button-addnew" onClick={this.props.showNewToggle}>X</div>
                 <div>
-                    <input maxLength="20" value={this.props.newFirst} onChange={e => this.props.updateInput(e, 1)} />VS <input maxLength="20" value={this.props.newSecond} onChange={e => this.props.updateInput(e, 2)} />
+                    <input maxLength="30" value={this.props.newFirst} onChange={e => this.props.updateInput(e.target.value, 1)} />VS <input maxLength="30" value={this.props.newSecond} onChange={e => this.props.updateInput(e.target.value, 2)} />
                 </div>
                 <div>
-                    <div className="select-external" onClick={e => this.toggleExternalSelect('showExternalSelectFirst')}>Select</div>
-                    <div className="select-external" onClick={e => this.toggleExternalSelect('showExternalSelectSecond')}>Select</div>
+                    <div className="select-external" onClick={e => this.toggleExternalSelect(1)}>Select</div>
+                    <div className="select-external" onClick={e => this.toggleExternalSelect(2)}>Select</div>
                 </div>
                 <div>
-                    Your Name:<br /><br /><input maxLength="20" value={this.props.newSubmitter} onChange={e => this.props.updateInput(e, 3)} />
+                    Your Name:<br /><br /><input maxLength="30" value={this.props.newSubmitter} onChange={e => this.props.updateInput(e.target.value, 3)} />
                 </div>
                 <div>
                     <button onClick={this.props.addVote}>Submit</button>

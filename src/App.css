@@ -14,43 +14,53 @@ li  {
     align-content: space-between;
 }
 .refresh    {
-    width: 45px;
     height: 30px;
-    border: 1px solid black;
-    position: fixed;
-    border-radius: 10px;
-    top: 60px;
-    left: 10px;
+    border: 1px solid darkgrey;
     font-size: 11px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: lightgray;
     color: rgba(0, 0, 0, 1);
-    z-index: 5;
+    margin-left: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .refresh:hover  {
     background-color: darkgrey;
     cursor: pointer;
 }
 .add-new-button {
-    width: 45px;
     height: 30px;
-    border: 1px solid black;
-    position: fixed;
-    border-radius: 10px;
-    top: 100px;
-    left: 10px;
+    border: 1px solid darkgray;
     font-size: 11px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: lightgray;
     color: rgba(0, 0, 0, 1);
-    z-index: 5;
+    margin-left: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 
 }
 .add-new-button:hover {
     background-color: darkgrey;
     cursor: pointer;
+}
+.search-votes   {
+    margin-left: 60px;
+}
+header  {
+    border-bottom: 1px solid darkgray;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    background-color: white;
 }

@@ -4,7 +4,6 @@ import './reset.css';
 import './App.css';
 import VoteCard from './components/VoteCard';
 import AddNew from './components/AddNew'
-import External from './components/External';
 
 class App extends Component {
   constructor() {
@@ -15,6 +14,7 @@ class App extends Component {
       newSubmitter: '',
       newFirst: '',
       newSecond: '',
+      searchStr: '',
       canVote: true
     }
     this.getVotes = this.getVotes.bind(this);
@@ -23,6 +23,7 @@ class App extends Component {
     this.updateInput = this.updateInput.bind(this);
     this.addVote = this.addVote.bind(this);
     this.deleteVote = this.deleteVote.bind(this);
+    this.doSearch = this.doSearch.bind(this);
   }
   componentDidMount()  {
     axios.get('/api/votes').then(res =>  {
@@ -39,7 +40,10 @@ class App extends Component {
     }
   }
   getVotes()  {
-    axios.get('/api/votes').then(res =>  {
+    let searches = ''
+    if (this.state.searchStr.trim() !== '')
+      searches = `?search=${this.state.searchStr}`;
+     axios.get('/api/votes' + searches).then(res =>  {
       this.setState({votes: res.data})
     }).catch(err => console.error(err));
   }
@@ -54,23 +58,23 @@ class App extends Component {
     }, 1000)
   }
   deleteVote(apiId)  {
-    // if (!sure)
-    //   return;
     axios.delete(`/api/votes/${apiId}`).then(res => {
       this.setState({votes: res.data});
     }).catch(err => console.error(err)); 
   }
-  updateInput(e, which) {
-    let newVal = e.target.value;
+  updateInput(newVal, which) {
     switch(which) {
       case 1:
-        this.setState({newFirst: newVal})
+        this.setState({newFirst: newVal});
         break;
       case 2:
-        this.setState({newSecond: newVal})
+        this.setState({newSecond: newVal});
         break;
       case 3:
-        this.setState({newSubmitter: newVal})
+        this.setState({newSubmitter: newVal});
+        break;
+      case 4:
+        this.setState({searchStr: newVal});
         break;
       default:
         return;
@@ -79,16 +83,23 @@ class App extends Component {
   showNewToggle() {
     this.setState({showAddNew: !this.state.showAddNew})
   }
+  doSearch()  {
+    this.getVotes();
+    this.setState({searchStr: ''});
+  }
   render() {
     const votes = this.state.votes.slice().reverse();
     return (
       <div className="App" ref="appRef">
-        <div className="refresh" onClick={this.getVotes}>
-          Refresh
-        </div>
-        <div className="add-new-button" onClick={this.showNewToggle}>
-          New<br />Vote
-        </div>
+        <header>
+          <div className="search-votes"><input value={this.state.searchStr} onChange={e => this.updateInput(e.target.value, 4)} /> <button onClick={this.doSearch}>Search</button></div>
+          <div className="refresh" onClick={this.getVotes}>
+            Refresh
+          </div>
+          <div className="add-new-button" onClick={this.showNewToggle}>
+            New Vote
+          </div>
+        </header>
         {this.state.showAddNew ? <AddNew updateInput={this.updateInput} addVote={this.addVote} showNewToggle={this.showNewToggle} newFirst={this.state.newFirst} newSecond={this.state.newSecond} newSubmitter={this.state.newSubmitter} /> : false}
         <div className="active-votes">
           {votes.map((vote, i) => {

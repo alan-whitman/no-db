@@ -1,0 +1,22 @@
+.external-list  {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.external-option    {
+    border: 1px solid darkgray;
+    background-color: lightgray;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 123px; 
+}
+.external-option:hover    {
+    cursor: pointer;
+    background-color: darkgray;
+}

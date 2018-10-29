@@ -20,7 +20,20 @@ let id = 1;
 
 module.exports = {
     getVotes(req, res)  {
-        res.status(200).send(votes);
+        let searchStr = '';
+        if (req.query.search)
+            searchStr = req.query.search.toLowerCase();
+        if (searchStr.trim() !== '')    {
+            let filteredVotes = [];
+            for (let i = 0; i < votes.length; i++)  {
+                if (votes[i].first.toLowerCase().includes(searchStr) || votes[i].second.toLowerCase().includes(searchStr))  {
+                    filteredVotes.push(votes[i]);
+                }
+            }
+            res.status(200).send(filteredVotes);
+        } else {
+            res.status(200).send(votes);
+        }
     },
     createVote(req, res)    {
         let { first, second, submitter } = req.body;

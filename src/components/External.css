@@ -4,8 +4,46 @@
     width: 800px;
     z-index: 100;
     position: fixed;
-    top: calc(100% / 2 - 400px);
+    top: calc(100% / 2 - 350px);
     left: calc(100% / 2 - 400px);
     overflow: scroll;
     background-color: white;
+    padding: 0px;
+}
+.close-button-external   {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border: 1px solid darkgray;
+    background-color: lightgray;
+    text-align: center;
+    padding-top: 2px;
+    right: 1px;
+    top: 1px;
+    z-index: 50;
+}
+.close-button-external:hover {
+    background-color: darkgray;
+    cursor: pointer;   
+}
+.external-choices   {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid lightgrey;
+}
+.external-choice    {
+    height: 40px;
+    border: 1px solid darkgray;
+    background-color: lightgrey;
+    color: black;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.external-choice:hover{
+    background-color: darkgray;
+    cursor: pointer;
 }
