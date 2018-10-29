@@ -7,8 +7,9 @@
     top: calc(100% / 2 - 350px);
     left: calc(100% / 2 - 400px);
     overflow: scroll;
-    background-color: white;
+    background-color: #C3C3C3;
     padding: 0px;
+    border-radius: 10px;
 }
 .close-button-external   {
     position: absolute;
