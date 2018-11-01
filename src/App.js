@@ -26,9 +26,7 @@ class App extends Component {
     this.doSearch = this.doSearch.bind(this);
   }
   componentDidMount()  {
-    axios.get('/api/votes').then(res =>  {
-      this.setState({votes: res.data})
-    }).catch(err => console.error(err));
+    this.getVotes();
   }
   addVote() {
     if (this.state.newFirst.trim().length > 0 && this.state.newSecond.trim().length > 0 && this.state.newSubmitter.trim().length > 0) {
@@ -40,10 +38,10 @@ class App extends Component {
     }
   }
   getVotes()  {
-    let searches = ''
+    let searches = '';
     if (this.state.searchStr.trim() !== '')
       searches = `?search=${this.state.searchStr}`;
-     axios.get('/api/votes' + searches).then(res =>  {
+    axios.get('/api/votes' + searches).then(res =>  {
       this.setState({votes: res.data})
     }).catch(err => console.error(err));
   }
@@ -88,25 +86,25 @@ class App extends Component {
     this.setState({searchStr: ''});
   }
   render() {
-    const votes = this.state.votes.slice().reverse();
+    const votes = this.state.votes.slice();
     return (
       <div className="App" ref="appRef">
         <header>
-          <input value={this.state.searchStr} onChange={e => this.updateInput(e.target.value, 4)} /> 
-          <div class="header-element" onClick={this.doSearch}>
+          <input value={this.state.searchStr} onKeyPress={e => {if (e.key === "Enter") this.doSearch()}} onChange={e => this.updateInput(e.target.value, 4)} /> 
+          <div className="header-element" onClick={this.doSearch}>
             Search
           </div>
-          <div  class="header-element" onClick={this.getVotes}>
+          <div  className="header-element" onClick={this.getVotes}>
             Refresh
           </div>
-          <div  class="header-element" onClick={this.showNewToggle}>
+          <div  className="header-element" onClick={this.showNewToggle}>
             New Vote
           </div>
         </header>
         {this.state.showAddNew ? <AddNew updateInput={this.updateInput} addVote={this.addVote} showNewToggle={this.showNewToggle} newFirst={this.state.newFirst} newSecond={this.state.newSecond} newSubmitter={this.state.newSubmitter} /> : false}
         <div className="active-votes">
           {votes.map((vote, i) => {
-            return <VoteCard first={vote.first} firstTally={vote.firstTally} second={vote.second} secondTally={vote.secondTally} submitter={vote.submitter} apiId={vote.id} key={i} updateTally={this.updateTally} deleteVote={this.deleteVote} />
+            return <VoteCard first={vote.first} firstTally={vote.firstTally} second={vote.second} secondTally={vote.secondTally} submitter={vote.submitter} apiId={vote.vote_id} key={i} updateTally={this.updateTally} deleteVote={this.deleteVote} />
           })}
         </div>
       </div>

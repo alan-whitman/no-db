@@ -7,7 +7,6 @@ class AddNew extends Component  {
     constructor(props)   {
         super(props);
         this.state = {
-            showPokemon: false,
             showExternalSelect: false,
             whichExternalSelect: 0
 
