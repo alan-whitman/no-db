@@ -18,6 +18,8 @@ let IPs = [
 
 module.exports = {
     getVotes(eReq, eRes)  {
+        let searchStr = eReq.query.search ? eReq.query.search : false;
+        console.log(searchStr);
         let db = eReq.app.get('db');
         db.get_votes().then(dbRes => {
             eRes.status(200).send(dbRes);
@@ -45,6 +47,10 @@ module.exports = {
         }
     },
     deleteVote(eReq, eRes)    {
+        let db = eReq.app.get('db');
+        db.delete_vote(eReq.params.id).then(dbRes =>  {
+            eRes.status(200).send(dbRes);
+        }).catch(err => console.error(err));
     }
 }
 

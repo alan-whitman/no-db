@@ -34,7 +34,7 @@ class AddNew extends Component  {
                     <div className="select-external" onClick={e => this.toggleExternalSelect(2)}>Select</div>
                 </div>
                 <div>
-                    Your Name:<br /><br /><input maxLength="30" value={this.props.newSubmitter} onChange={e => this.props.updateInput(e.target.value, 3)} />
+                    Your Name:<br /><br /><input maxLength="30" value={this.props.newSubmitter} onKeyPress={e => {if (e.key === "Enter") this.props.addVote()}} onChange={e => this.props.updateInput(e.target.value, 3)} />
                 </div>
                 <div>
                     <button onClick={this.props.addVote}>Submit</button>

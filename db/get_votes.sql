@@ -1,1 +1,3 @@
-SELECT * FROM votes ORDER BY vote_id DESC;
+SELECT * 
+FROM votes
+ORDER BY vote_id DESC;
