@@ -1,29 +1,16 @@
-let votes = [
-        // {
-        //     "first": "Superman",
-        //     "firstTally": 0,
-        //     "second": "Batman",
-        //     "secondtally": 0,
-        //     "submitter": "Bob",
-        //     "id": 0
-        // }
-];
-
-
-let IPs = [
-    "000.000.000.000", // IP Address Cache
-    "111.222.333.444"
-]
-
-
 module.exports = {
     getVotes(eReq, eRes)  {
-        let searchStr = eReq.query.search ? eReq.query.search : false;
-        console.log(searchStr);
+        let searchStr = eReq.query.search ? `%${eReq.query.search}%` : false;
         let db = eReq.app.get('db');
-        db.get_votes().then(dbRes => {
-            eRes.status(200).send(dbRes);
-        }).catch(err => console.error(err));
+        if (searchStr)  {
+            db.search_votes(searchStr).then(dbRes => {
+                eRes.status(200).send(dbRes);
+            }).catch(err => console.error(err));
+        } else {
+            db.get_votes(searchStr).then(dbRes => {
+                eRes.status(200).send(dbRes);
+            }).catch(err => console.error(err));
+        }
     },
     createVote(eReq, eRes)    {
         let db = eReq.app.get('db');
